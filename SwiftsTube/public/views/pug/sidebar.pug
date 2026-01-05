@@ -1,0 +1,13 @@
+.sidebar.sidebar-white.sidebar-fixed.border-end#sidebar
+  .sidebar-header.border-bottom
+    .sidebar-brand
+      svg.sidebar-brand-full(width="88" height="32" alt="coreui Logo")
+        use(xlink:href="assets/brand/coreui.svg#full")
+        |
+      svg.sidebar-brand-narrow(width="32" height="32" alt="coreui Logo")
+        use(xlink:href="assets/brand/coreui.svg#signet")
+    button.btn-close.d-lg-none(type='button' data-coreui-dismiss='offcanvas' data-coreui-theme="dark" aria-label='Close' onclick='coreui.Sidebar.getInstance(document.querySelector("#sidebar")).toggle()')
+  ul.sidebar-nav(data-coreui="navigation" data-simplebar)
+  
+  .sidebar-footer.border-top.d-none.d-md-flex      
+    button.sidebar-toggler(type="button" data-coreui-toggle="unfoldable")

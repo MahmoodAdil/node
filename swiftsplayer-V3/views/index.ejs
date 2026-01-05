@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+    <!-- Bootstrap Toggle CSS -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+
+            <!-- Bootstrap and Bootstrap Toggle Styles -->
+                     <!-- Bootstrap and Bootstrap Toggle Styles -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-toggle/css/bootstrap-toggle.min.css">
+    
+        <!-- jQuery and Bootstrap Toggle Scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+  
+  <!-- Include Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar">
+
+                <form action="/search" method="POST" class="mb-3">
+                    <div class="input-group">
+                        <input type="text" name="searchTerm" class="form-control" placeholder="Search videos...">
+                        <% if (selectedAlbumId) { %>
+                            <input type="hidden" name="album" value="<%= selectedAlbumId %>">
+                        <% } %>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <form action="/" method="GET" class="mb-3">
+                    <div class="input-group">
+                        <select name="album" class="form-control" onchange="this.form.submit()">
+                            <option value="">All Videos</option>
+                            <% albums.forEach(album => { %>
+                                <option value="<%= album.id %>" <%= album.id == selectedAlbumId ? 'selected' : '' %>>
+                                    <%= album.name %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </form>
+                <ul class="list-group">
+                    <% if (noVideosMessage) { %>
+                        <li class="list-group-item">
+                            <div class="alert alert-info">
+                                <%= noVideosMessage %>
+                            </div>
+                        </li>
+                    <% } else { %>
+                        <% videos.forEach(video => { %>
+                            <li class="list-group-item" onclick="playVideo('<%= video.filePath %>', '<%= video.title %>')">
+                                <div class="d-flex align-items-center">
+                                    <img src="<%= video.thumbnailPath %>" alt="<%= video.title %>" class="img-thumbnail me-3" style="width: 80px; height: auto;">
+                                    <div>
+                                        <strong><%= video.title %></strong>
+                                    </div>
+                                </div>
+                            </li>
+                        <% }) %>
+                    <% } %>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 main-content">
+                <!-- Video Player -->
+                <!-- Video Player -->
+<video id="videoPlayer" controls class="w-100">
+    <source src="" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<!-- Video Controls -->
+<div class="video-controls mt-3 d-flex align-items-center gap-2">
+    <!-- Play/Pause Button -->
+    <button id="playPauseBtn" class="btn btn-sm btn-success">
+        <i id="playPauseIcon" class="fas fa-play"></i> Play
+    </button>
+
+    <!-- Loop Toggle Button -->
+    <button id="loopBtn" class="btn btn-sm btn-info">
+        <i id="loopIcon" class="fas fa-sync"></i> Loop Off
+    </button>
+
+        <!-- Volume Control -->
+        <div class="volume-control d-flex align-items-center gap-3">
+            <button id="muteBtn" class="btn btn-sm btn-secondary">
+                <i id="volumeIcon" class="fas fa-volume-up"></i>
+            </button>
+            <input id="volumeSlider" type="range" min="0" max="1" step="0.1" value="1" class="form-control-range">
+            <span id="volumeValue" class="ms-2">100%</span>
+        </div>
+</div>
+<!-- Progress Bar -->
+<div class="progress mt-3">
+    <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+</div>
+
+
+
+            </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Toggle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-toggle@2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Detection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .debug-info { background: #f5f5f5; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .test-area { border: 1px solid #ddd; padding: 15px; border-radius: 5px; }
+        button { padding: 8px 15px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .mobile { background-color: #ffeb3b; padding: 5px; }
+        .desktop { background-color: #4caf50; color: white; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Device Detection Tester</h1>
+    <div id="detectDeviceTypePrayerCache"></div>
+
+    <div class="debug-info">
+        <h2>Device Information</h2>
+        <div id="deviceInfo">Loading...</div>
+        <button onclick="refreshInfo()">Refresh Info</button>
+    </div>
+    
+    <div class="test-area">
+        <h2>Test Detection</h2>
+        <button onclick="runDetectionTests()">Run Detection Tests</button>
+        <div id="testResults"></div>
+    </div>
+
+    <script>
+        // Enhanced Device Detector with Debugging
+        class DeviceDetector {
+            constructor() {
+                this.debug = true;
+                this.lastDetection = {};
+            }
+
+            log(message) {
+                if (this.debug) {
+                    console.log(`[DeviceDetector] ${message}`);
+                }
+            }
+
+            getScreenInfo() {
+                return {
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                    pixelRatio: window.devicePixelRatio || 1,
+                    orientation: window.matchMedia("(orientation: portrait)").matches ? 'portrait' : 'landscape'
+                };
+            }
+
+            getConnectionInfo() {
+                if (!navigator.connection) return null;
+                return {
+                    effectiveType: navigator.connection.effectiveType,
+                    saveData: navigator.connection.saveData,
+                    downlink: navigator.connection.downlink,
+                    rtt: navigator.connection.rtt
+                };
+            }
+
+            detectDeviceType() {
+                const detectionPoints = { mobile: 0, desktop: 0 };
+                const screen = this.getScreenInfo();
+                const connection = this.getConnectionInfo();
+                const userAgent = navigator.userAgent.toLowerCase();
+
+                // 1. Screen Size Check
+                if (screen.width < 768) {
+                    this.log("Small screen detected (<768px)");
+                    detectionPoints.mobile += 2;
+                } else {
+                    detectionPoints.desktop += 1;
+                }
+
+                // 2. Touch Support Check
+                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                    this.log("Touch support detected");
+                    detectionPoints.mobile += 1;
+                } else {
+                    detectionPoints.desktop += 1;
+                }
+
+                // 3. User Agent Check
+                if (/mobile|android|iphone|ipad|phone/i.test(userAgent)) {
+                    this.log("Mobile user agent detected");
+                    detectionPoints.mobile += 1;
+                } else {
+                    detectionPoints.desktop += 1;
+                }
+
+                // 4. Network Connection Check
+                if (connection) {
+                    if (connection.effectiveType.includes('2g') || connection.saveData) {
+                        this.log("Slow connection detected");
+                        detectionPoints.mobile += 1;
+                    }
+                }
+
+                // 5. Device Memory (if available)
+                if (navigator.deviceMemory) {
+                    this.log(`Device memory: ${navigator.deviceMemory}GB`);
+                    if (navigator.deviceMemory < 2) {
+                        detectionPoints.mobile += 1;
+                    } else {
+                        detectionPoints.desktop += 1;
+                    }
+                }
+
+                this.log(`Detection points: Mobile ${detectionPoints.mobile} vs Desktop ${detectionPoints.desktop}`);
+
+                // Determine final type
+                const deviceType = detectionPoints.mobile > detectionPoints.desktop ? 'mobile' : 'desktop';
+                this.lastDetection = {
+                    type: deviceType,
+                    points: detectionPoints,
+                    screen,
+                    connection,
+                    userAgent: navigator.userAgent
+                };
+
+                return deviceType;
+            }
+
+            getDetectionReport() {
+                return this.lastDetection;
+            }
+        }
+
+        // Initialize detector
+        const detector = new DeviceDetector();
+
+        // Display functions
+        function updateDeviceInfo() {
+            const prayerTimesLoader = detector.detectDeviceType() === 'mobile' 
+                ? new MobilePrayerCache() 
+                : new DesktopPrayerCache();
+
+                            // Display results
+           
+
+            const deviceType = detector.detectDeviceType();
+            const report = detector.getDetectionReport();
+            const screen = report.screen;
+            const connection = report.connection || { effectiveType: 'unknown' };
+
+            document.getElementById('deviceInfo').innerHTML = `
+                <p><strong>Detected Device:</strong> <span class="${deviceType}">${deviceType.toUpperCase()}</span></p>
+                <p><strong>Screen Size:</strong> ${screen.width} × ${screen.height}px (${screen.orientation})</p>
+                <p><strong>Pixel Ratio:</strong> ${screen.pixelRatio}</p>
+                <p><strong>Network Type:</strong> ${connection.effectiveType}</p>
+                <p><strong>User Agent:</strong> ${report.userAgent}</p>
+                <details>
+                    <summary>Detailed Detection Points</summary>
+                    <pre>${JSON.stringify(report.points, null, 2)}</pre>
+                </details>
+            `;
+        }
+
+        function runDetectionTests() {
+            const results = [];
+            
+            // Test 1: Basic detection
+            results.push(`Initial detection: ${detector.detectDeviceType()}`);
+            
+            // Test 2: Simulate mobile
+            const originalInnerWidth = window.innerWidth;
+            Object.defineProperty(window, 'innerWidth', { value: 375, configurable: true });
+            results.push(`Simulated mobile width (375px): ${detector.detectDeviceType()}`);
+            Object.defineProperty(window, 'innerWidth', { value: originalInnerWidth });
+            
+            // Test 3: Simulate desktop
+            Object.defineProperty(window, 'innerWidth', { value: 1200, configurable: true });
+            results.push(`Simulated desktop width (1200px): ${detector.detectDeviceType()}`);
+            Object.defineProperty(window, 'innerWidth', { value: originalInnerWidth });
+            
+            // Display results
+            document.getElementById('testResults').innerHTML = `
+                <h3>Test Results</h3>
+                <ul>
+                    ${results.map(r => `<li>${r}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        function refreshInfo() {
+            updateDeviceInfo();
+            console.log("Full detection report:", detector.getDetectionReport());
+        }
+
+        function MobilePrayerCache() {
+            console.log("Full detection report MobilePrayerCache:");
+
+            document.getElementById('detectDeviceTypePrayerCache').innerHTML = 
+            '<h1>{MobilePrayerCache}</h1>';
+
+            return "Loading data from MobilePrayerCache"
+        }
+
+        function DesktopPrayerCache() {
+            console.log("Full detection report DesktopPrayerCache:");
+ document.getElementById('detectDeviceTypePrayerCache').innerHTML = 
+                '<h1>{DesktopPrayerCache}</h1>';
+             return "Loading data from MobilePrayerCache"
+        }
+
+        // Initial load
+        updateDeviceInfo();
+
+        // Update on resize
+        window.addEventListener('resize', updateDeviceInfo);
+
+        // Debug: Print detection report to console
+        console.log("Initial device detection:", detector.getDetectionReport());
+    </script>
+</body>
+</html>

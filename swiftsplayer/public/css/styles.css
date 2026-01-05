@@ -1,0 +1,227 @@
+/* Custom styles */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    height: 100%;
+    margin: 0;
+}
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.container-fluid {
+    height: 100%;
+    padding: 0;
+}
+.row {
+    height: 100%;
+}
+
+.sidebar {
+    width: 25%;
+    padding: 10px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 100%;
+
+
+}
+
+.main-content {
+    width: 75%;
+    padding: 10px;
+    overflow-y: hidden; /* Disable scrolling */
+    height: 100vh; /* Full viewport height */
+}
+
+video {
+    width: 90%;
+    height: auto;
+    /* max-height:800px; */
+    padding-bottom: 100px;
+}
+
+/* Bootstrap overrides */
+.btn-primary {
+    margin: 5px;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+/* Thumbnail styles */
+.img-thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Video list item styles */
+.list-group-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+
+/* Video Controls */
+.video-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* Ensure Bootstrap Toggle buttons match other buttons */
+.btn-secondary {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+
+/* Play/Pause Button */
+#playPauseBtn.btn-success {
+    background-color: #28a745; /* Green */
+    border-color: #28a745;
+}
+
+#playPauseBtn.btn-warning {
+    background-color: #ffc107; /* Yellow */
+    border-color: #ffc107;
+}
+
+/* Loop Toggle Button */
+#loopBtn.btn-info {
+    background-color: #17a2b8; /* Blue */
+    border-color: #17a2b8;
+}
+
+#loopBtn.btn-success {
+    background-color: #28a745; /* Green */
+    border-color: #28a745;
+}
+
+/* Volume Control */
+ /* Mute Button */
+ #muteBtn.btn-secondary {
+    background-color: #28a745; /* Green */
+    border-color: #28a745;
+}
+
+#muteBtn.btn-danger {
+    background-color: #dc3545; /* Red */
+    border-color: #dc3545;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+}
+/* Volume Slider */
+#volumeSlider {
+    width: 100px;
+}
+
+/* Volume Value */
+#volumeValue {
+    font-size: 14px;
+    font-weight: bold;
+    color: #007bff; /* Blue text to match the slider */
+}
+
+/* Progress Bar */
+.progress {
+    height: 5px;
+    background-color: #007bff;
+    flex-grow: 1;
+    cursor: pointer;
+ 
+}
+
+.progress-bar {
+    background-color: #007bff; /* Blue */
+    max-width: 90%;
+    transition: width 0.1s;
+}
+
+div.sticky {
+    position: sticky;
+    top: 0px;
+    padding: 5px;
+    /* margin-left: 15px; */
+    /* background-color: #cae8ca; */
+    /* border: 0px solid #4CAF50; */
+    z-index: 1000; /* to ensure it stays on top */
+}
+
+/* Customize the Play All button */
+#playAllBtn {
+    width: 100px; /* Adjust width as needed */
+}
+
+/* Adjust the button text and icons */
+#playAllBtn i {
+    margin-right: 5px;
+}
+
+
+
+
+
+/* updated
+ */
+
+.avatar {
+    position:static;
+    margin-top: -30px;
+    /* border: #14bbdc; */
+    /* border-style: dashed; */
+    align-items: center;
+    margin-left: auto; 
+    margin-right: 0px;
+}
+
+.topbar {
+    height: 3.5rem;
+    border-radius: 1%;
+    background-color: #7e12d1;
+  }
+
+.topbar .navbar-search input {
+  font-size: 0.85rem;
+  height: auto;
+  width: 400px;
+  border-radius: 2% !important;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+  }
+.topbar .topbar-divider {
+  width: 0;
+  border-right: 1px solid #e3e6f0;
+  height: calc(4.375rem - 2rem);
+  margin: auto 1rem;
+}
+
+.topbar.navbar-dark .navbar-nav .nav-item .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+}  
+
+.sidebar .nav-item .nav-link .img-profile,
+.topbar .nav-item .nav-link .img-profile {
+  height: 4rem;
+  width: 4rem;
+  border: #1cbcaf;
+  border-style: double;
+  
+}

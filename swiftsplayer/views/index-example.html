@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollable Sidebar with Fixed Main Content</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .container-fluid {
+            height: 100%;
+            padding: 0;
+        }
+        .row {
+            height: 100%;
+        }
+        .sidebar {
+            height: 100%;
+            overflow-y: auto; /* Enable vertical scrolling */
+            background-color: #c777ec;
+            padding: 20px;
+        }
+        .main-content {
+            height: 100vh; /* Full viewport height */
+            overflow-y: hidden; /* Disable scrolling */
+            background-color: #9b7aee;
+            padding: 20px;
+        }
+        div.sticky {
+            position: sticky;
+            top: 0;
+            padding: 5px;
+            margin-left: 15px;
+            background-color: #d69be4;
+            border: 2px solid #c564ca;
+            }
+
+        .avatar {
+        border-radius: 100%;
+        width: 60px;
+        height: 60px;
+        display: inline-block;
+        }
+        .nav{
+            border-radius: 90%;
+            background-color: #c6b0eb;
+        }
+</style>
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row">
+                                    <!-- Sidebar -->
+            <div class="col-md-3 sidebar">
+                <h3>Sidebar</h3>
+                <div class="sticky">I am sticky!</div>
+                <ul>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                    <li><img src="../public/thumbnails/1739549183362+Ehna_-dkvNU.jpg" alt="Trulli" width="200" height="200"></li>
+                </ul>
+            </div>
+             <!-- Main Content -->
+            <div class="col-md-9 main-content">
+                <nav class="navbar navbar-expand-lg nav">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#">Aliza Mahmood <img src="../public/img/aliza.png" alt="Avatar" class="avatar"></a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                          </li>
+                        </ul>
+                        <form class="d-flex">
+                          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                      </div>
+                    </div>
+                    
+                  </nav>               
+                <video class="w-100" controls autoplay>
+                    <source src="../public/videos/1739549666647+PKTAQMUa43M.mp4" type="video/ogg">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

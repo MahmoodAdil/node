@@ -1,0 +1,148 @@
+/* Custom styles */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    width: 25%;
+    padding: 10px;
+}
+
+.main-content {
+    width: 75%;
+    padding: 10px;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+/* Bootstrap overrides */
+.btn-primary {
+    margin: 5px;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+/* Thumbnail styles */
+.img-thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Video list item styles */
+.list-group-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+
+/* Video Controls */
+.video-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* Ensure Bootstrap Toggle buttons match other buttons */
+.btn-secondary {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+
+/* Play/Pause Button */
+#playPauseBtn.btn-success {
+    background-color: #28a745; /* Green */
+    border-color: #28a745;
+}
+
+#playPauseBtn.btn-warning {
+    background-color: #ffc107; /* Yellow */
+    border-color: #ffc107;
+}
+
+/* Loop Toggle Button */
+#loopBtn.btn-info {
+    background-color: #17a2b8; /* Blue */
+    border-color: #17a2b8;
+}
+
+#loopBtn.btn-success {
+    background-color: #28a745; /* Green */
+    border-color: #28a745;
+}
+
+/* Volume Control */
+ /* Mute Button */
+ #muteBtn.btn-secondary {
+    background-color: #28a745; /* Green */
+    border-color: #28a745;
+}
+
+#muteBtn.btn-danger {
+    background-color: #dc3545; /* Red */
+    border-color: #dc3545;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+}
+/* Volume Slider */
+#volumeSlider {
+    width: 100px;
+}
+
+/* Volume Value */
+#volumeValue {
+    font-size: 14px;
+    font-weight: bold;
+    color: #007bff; /* Blue text to match the slider */
+}
+
+/* Progress Bar */
+.progress {
+    height: 5px;
+    background-color: #007bff;
+    flex-grow: 1;
+    cursor: pointer;
+ 
+}
+
+.progress-bar {
+    background-color: #007bff; /* Blue */
+    transition: width 0.1s;
+}
+
+
+
+
+
+
+
+
+
+
+/* updated
+ */
+
+
+

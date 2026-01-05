@@ -1,0 +1,15 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "My awesome project",
+  "author": "John Doe",
+  "license": "MIT",
+  "dependencies": {
+    "openpgp": "^4.10.10"
+  },
+  "main": "encrypter.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
